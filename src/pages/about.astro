@@ -1,48 +1,76 @@
 ---
-import { Image } from "astro:assets";
-
 import PageLayout from "@/layouts/Base";
-import aboutImg from "@/assets/about-astro.png";
 
 const meta = {
 	title: "About",
-	description: "I'm a starter theme for Astro.build",
+	description: "About page for my website",
 };
+const myProjects: Array<{ title: string; desc: Array<string>; href: string }> = [
+	{
+		title: "IoT Monitoring System",
+		desc: ["Designed and developed a system for monitoring HCSR-04 sensor with esp32 remotely.Integrated the HiveMQ MQTT client and used Eclipse Mosquitto as a broker","Developed firmware using ESP-IDF in C and FreeRTOS"],
+		href: "https://github.com/saiprasad-patil/mqtt-sensor",
+	},
+	{
+		title: "Handheld Gaming Console",
+		desc: ["Led a team of 3 in developing firmware and hardware prototypes","Implemented firmware using Arduino IDE and C for the ATtiny85 micro-controller","Integrated I2C OLED display to enhance user interface","Utilized KiCAD for PCB prototyping and Fusion360 for enclosure design"],
+		href: "https://github.com/saiprasad-patil/mqtt-sensor",
+	},
+	{
+		title: "Poster Spy App",
+		desc: ["Created an app for viewing posters by scraping data from the posterspy.com website","Added a view for images, sorted by types, an info screen and a refresh button"],
+		href: "https://github.com/saiprasad-patil/mqtt-sensor",
+	},
+	{
+		title: "Flutter Weather App",
+		desc: ["Created a weather app using flutter and weather api that displays the current weather and data such as humidity, atmospheric pressure and wind speed."],
+		href: "https://github.com/saiprasad-patil/mqtt-sensor"
+	},
+
+];
 ---
 
 <PageLayout meta={meta}>
 	<div class="space-y-6">
-		<h1 class="title">About</h1>
-		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
-		</p>
-		<div class="flex justify-center">
-			<Image
-				src={aboutImg}
-				alt="A cartoon cactus looking at the 'Astro.build' logo"
-				loading="eager"
-				fetchpriority="high"
-			/>
-		</div>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="github repository">repo</a
-			> if you like me!
-		</p>
+		<h1 class="title">Projects</h1>
+		<section class="mt-16">
+			<ul class="space-y-4 sm:space-y-2">
+				{
+					myProjects.map(({ href, title, desc }) => (
+						<li>
+							<a
+								href={href}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="cactus-link inline-block"
+							>
+							<h1 class="text-lg ">{title}</h1>
+							</a>
+							<ul class="list-inside list-disc space-y-1 text-base">
+								{
+									desc.map((value) => (<li>{value}</li>))
+								}
+							</ul>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+		<h1 class="title">Skills</h1>
+		<section class="mt-16">
+			<ul class="list-inside list-disc space-y-1 text-base list-outside">
+				<li>Programming languages: C, C++, Python, Dart</li>
+				<li>Tools and technologies: ESP-IDF, GCC, GDB, Flutter</li>
+				<li>Softwares: KiCAD, Keil Studio, Microchip Studio, EasyEDA, LTSPICE VIII, Arduino IDE, Fusion360</li>
+				<li>Microcontroller/Boards: ESP32 Devkit,Raspberry Pi Pico, Attiny85, FRDM-KL25z, Adruino UNO, RaspberryPi Zero W, Jetson Nano</li>
+			</ul>
+		</section>
+		<h1 class="title">Certificates</h1>
+		<section class="mt-16">
+			<ul class="list-inside list-disc space-y-1 text-base list-outside">
+				<li><a href="https://www.coursera.org/account/accomplishments/specialization/certificate/ARA6CXQP4H67">Google Data Analytics</a></li>
+				<li><a href="https://verify.skilljar.com/c/qgkcjrcrq9mp">HiveMQ MQTT Associate</a></li>
+			</ul>
+		</section>
 	</div>
 </PageLayout>
